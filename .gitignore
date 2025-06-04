@@ -1,9 +1,14 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 # This .gitignore file should be placed at the root of your Unity project directory
 #
 =======
 
 >>>>>>> 46c3185 (Primer commit)
+=======
+# This .gitignore file should be placed at the root of your Unity project directory
+#
+>>>>>>> ff94c5dce8a73345ba8d832a0b48fdba40a3a9c9
 # Get latest from https://github.com/github/gitignore/blob/main/Unity.gitignore
 #
 .utmp/
@@ -35,6 +40,9 @@
 
 # Visual Studio cache directory
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> ff94c5dce8a73345ba8d832a0b48fdba40a3a9c9
 .vs/
 
 # Gradle cache directory
@@ -88,6 +96,9 @@ crashlytics-build.properties
 /[Aa]ssets/Unity.VisualScripting.Generated/VisualScripting.Flow/UnitOptions.db.meta
 /[Aa]ssets/Unity.VisualScripting.Generated/VisualScripting.Core/Property Providers
 /[Aa]ssets/Unity.VisualScripting.Generated/VisualScripting.Core/Property Providers.meta
+<<<<<<< HEAD
 =======
 
 >>>>>>> 46c3185 (Primer commit)
+=======
+>>>>>>> ff94c5dce8a73345ba8d832a0b48fdba40a3a9c9
