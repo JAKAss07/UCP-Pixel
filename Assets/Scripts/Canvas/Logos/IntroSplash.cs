@@ -16,7 +16,6 @@ public class IntroSplash : MonoBehaviour
 
     void Start()
     {
-        AudioListener.volume = 0f;
         logo1.SetActive(false);
         logo2.SetActive(false);
         menuPrincipal.SetActive(false);

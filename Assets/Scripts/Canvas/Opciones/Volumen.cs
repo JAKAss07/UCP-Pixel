@@ -6,29 +6,24 @@ public class Volumen : MonoBehaviour
     public Slider sliderVolumen;
     public Button botonMute;
 
-    private bool estaMuteado = false;
-    private float volumenAnterior = 1f;
-
     public Sprite iconoSonido;
     public Sprite iconoMute;
 
+    private bool estaMuteado = false;
+    private float volumenAnterior = 1f;
 
     void Start()
     {
         // Cargar volumen guardado
-        if (PlayerPrefs.HasKey("volumen"))
+        float volumenGuardado = PlayerPrefs.GetFloat("volumen", 1f);
+        sliderVolumen.value = volumenGuardado;
+        AudioListener.volume = volumenGuardado;
+
+        if (volumenGuardado == 0f)
         {
-            float volumenGuardado = PlayerPrefs.GetFloat("volumen");
-            sliderVolumen.value = volumenGuardado;
-            AudioListener.volume = volumenGuardado;
-        }
-        else
-        {
-            sliderVolumen.value = 1f;
-            AudioListener.volume = 1f;
+            estaMuteado = true;
         }
 
-        // Asignar eventos 
         sliderVolumen.onValueChanged.AddListener(CambiarVolumen);
         botonMute.onClick.AddListener(ToggleMute);
 
@@ -39,14 +34,9 @@ public class Volumen : MonoBehaviour
     {
         AudioListener.volume = valor;
         PlayerPrefs.SetFloat("volumen", valor);
-    
         PlayerPrefs.Save();
 
-        if (valor > 0f)
-        {
-            estaMuteado = false;
-        }
-
+        estaMuteado = valor == 0f;
         ActualizarIcono();
     }
 
@@ -54,15 +44,21 @@ public class Volumen : MonoBehaviour
     {
         if (estaMuteado)
         {
-            // Restaurar volumen
-            AudioListener.volume = volumenAnterior;
-            sliderVolumen.value = volumenAnterior;
+            // Restaurar volumen (si estaba en 0, usar un valor por defecto)
+            float nuevoVolumen = volumenAnterior > 0f ? volumenAnterior : 1f;
+
+            AudioListener.volume = nuevoVolumen;
+            sliderVolumen.value = nuevoVolumen;
             estaMuteado = false;
         }
         else
         {
-            // Guardar volumen y silenciar
-            volumenAnterior = sliderVolumen.value;
+            // Guardar volumen solo si es mayor a 0
+            if (sliderVolumen.value > 0f)
+            {
+                volumenAnterior = sliderVolumen.value;
+            }
+
             AudioListener.volume = 0f;
             sliderVolumen.value = 0f;
             estaMuteado = true;
@@ -74,7 +70,7 @@ public class Volumen : MonoBehaviour
     private void ActualizarIcono()
     {
         if (estaMuteado || sliderVolumen.value == 0)
-        {   
+        {
             botonMute.image.sprite = iconoMute;
         }
         else
@@ -82,5 +78,4 @@ public class Volumen : MonoBehaviour
             botonMute.image.sprite = iconoSonido;
         }
     }
-
 }

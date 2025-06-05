@@ -16,6 +16,7 @@ public class ControladorDeBotones : MonoBehaviour
     // Salir del juego
     public void SalirDelJuego()
     {
+        print("Has salido del juego :C");
         Application.Quit();
     }
 
