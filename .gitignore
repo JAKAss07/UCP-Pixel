@@ -44,6 +44,7 @@
 =======
 >>>>>>> ff94c5dce8a73345ba8d832a0b48fdba40a3a9c9
 .vs/
+.vscode/
 
 # Gradle cache directory
 .gradle/
